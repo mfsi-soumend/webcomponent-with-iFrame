@@ -21,12 +21,14 @@ p {
     margin-top: 50px;
 }
 iframe {
-    background: aliceblue;
-    box-shadow: 0 1px 15px #adadad;
+    background: #ffffff87;
+    padding: 20px;
     border: 2px solid #fff;
+    transition: .2s ease-in-out;
     border-radius: 5px;
     margin-right: 20px;
 }
 iframe:hover {
-    box-shadow: 0 1px 15px #787878;
+    box-shadow: 0 0 15px #8ec3f1;
+    margin: -2px 20px 2px 0;
 }
