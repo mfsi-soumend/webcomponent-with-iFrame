@@ -9,9 +9,17 @@ export class MyComponent extends LitElement {
     h2 {
       font-size: 20px;
       color: #0037b7;
+      text-align: center;
     }
     p {
       color: blue;
+      font-size: 16px;
+      text-align: center;
+    }
+    p span {
+      color: #666;
+      font-size: 14px;
+      text-align: center;
     }
   `;
 
@@ -29,7 +37,9 @@ export class MyComponent extends LitElement {
   render() {
     return html`
       <h2>Hello, ${this.name}!</h2>
-      <p>clicked : ${this.clicked}</p>
+      <p>Clicked : ${this.clicked}</p>
+      <br />
+      <p><span>Click anywhere in the iFrame !!</span></p>
     `;
   }
 }
