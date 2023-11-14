@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="./my-component.js"></script>
+    <title>Web Component</title>
+  </head>
+  <body>
+    <h2>Web Component</h2>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, nam, ut
+      esse deleniti illum nostrum ipsam consequatur voluptatum quos eligendi
+      ipsum non sit nulla odit asperiores voluptas, doloremque aut et!
+    </p>
+    <iframe id="myIframe1" src="iframe.html"></iframe>
+    <iframe id="myIframe2" src="iframe.html"></iframe>
+    <iframe id="myIframe3" src="iframe.html"></iframe>
+
+    <script>
+      const iframe1 = document.getElementById("myIframe1");
+      const iframeWindow1 = iframe1.contentWindow;
+      iframe1.onload = function () {
+        const iframeWindow1 = iframe1.contentWindow;
+        iframeWindow1.postMessage(
+          { type: "loadComponent", from: "iFrame1", clicked: 0 },
+          "*"
+        );
+        iframe1.contentDocument.body.addEventListener("click", function () {
+          iframeWindow1.postMessage(
+            { type: "iframeClicked", from: "iFrame1" },
+            "*"
+          );
+        });
+      };
+      const iframe2 = document.getElementById("myIframe2");
+      const iframeWindow2 = iframe2.contentWindow;
+      iframe2.onload = function () {
+        const iframeWindow2 = iframe2.contentWindow;
+        iframeWindow2.postMessage(
+          { type: "loadComponent", from: "iFrame2", clicked: 0 },
+          "*"
+        );
+        iframe2.contentDocument.body.addEventListener("click", function () {
+          iframeWindow2.postMessage(
+            { type: "iframeClicked", from: "iFrame2" },
+            "*"
+          );
+        });
+      };
+      const iframe3 = document.getElementById("myIframe3");
+      const iframeWindow3 = iframe3.contentWindow;
+      iframe3.onload = function () {
+        const iframeWindow3 = iframe3.contentWindow;
+        iframeWindow3.postMessage(
+          { type: "loadComponent", from: "iFrame3", clicked: 0 },
+          "*"
+        );
+        iframe3.contentDocument.body.addEventListener("click", function () {
+          iframeWindow3.postMessage(
+            { type: "iframeClicked", from: "iFrame3" },
+            "*"
+          );
+        });
+      };
+      // Listen for messages from the iframe
+      window.addEventListener("message", function (event) {
+        // Check if the message is from the iframe
+        if (event.source === iframeWindow1) {
+          if (event.data.type === "componentLoaded") {
+            console.log("Web component loaded in iframe1!");
+          }
+        } else if (event.source === iframeWindow2) {
+          if (event.data.type === "componentLoaded") {
+            console.log("Web component loaded in iframe2!");
+          }
+        } else if (event.source === iframeWindow3) {
+          if (event.data.type === "componentLoaded") {
+            console.log("Web component loaded in iframe3!");
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

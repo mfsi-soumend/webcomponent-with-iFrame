@@ -1,0 +1,40 @@
+<!-- iframe.html -->
+<html>
+  <head>
+    <title>Iframe Page</title>
+    <script type="module" src="./my-component.js"></script>
+  </head>
+  <body>
+    <script>
+      let clickCount = 0;
+      let component;
+      // Listen for messages from the main page
+      window.addEventListener("message", function (event) {
+        // Check if the message is from the main page
+        if (event.source === window.parent) {
+          // Handle messages from the main page
+          if (event.data.type === "loadComponent") {
+            // Load the web component into the iframe
+            clickCount = event.data.clicked;
+            component = document.createElement("my-component");
+            component.setAttribute("name", "Soumen - from " + event.data.from);
+            component.setAttribute("clicked", clickCount);
+            document.body.appendChild(component);
+
+            // Notify the main page that the component is loaded
+            window.parent.postMessage(
+              { type: "componentLoaded", clickCount: clickCount },
+              "*"
+            );
+          } else if (event.data.type === "iframeClicked") {
+            // Increment the click count
+            clickCount++;
+            console.log("Click count in " + event.data.from + " :", clickCount);
+            //update the child with updated data to my-component
+            component.setAttribute("clicked", clickCount);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
