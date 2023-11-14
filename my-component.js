@@ -6,6 +6,9 @@ import {
 
 export class MyComponent extends LitElement {
   static styles = css`
+    .my-component-div {
+      cursor: pointer !important;
+    }
     h2 {
       font-size: 20px;
       color: #0037b7;
@@ -36,10 +39,12 @@ export class MyComponent extends LitElement {
 
   render() {
     return html`
-      <h2>Hello, ${this.name}!</h2>
-      <p>Clicked : ${this.clicked}</p>
-      <br />
-      <p><span>Click anywhere in the iFrame !!</span></p>
+      <div class="my-component-div">
+        <h2>Hello, ${this.name}!</h2>
+        <p>Clicked : ${this.clicked}</p>
+        <br />
+        <p><span>Click anywhere in the iFrame !!</span></p>
+      </div>
     `;
   }
 }

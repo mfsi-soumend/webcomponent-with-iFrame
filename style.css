@@ -15,3 +15,18 @@ p {
     font-size: 18px;
     text-align: center;
 }
+.iframe-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+iframe {
+    background: aliceblue;
+    box-shadow: 0 1px 15px #adadad;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+iframe:hover {
+    box-shadow: 0 1px 15px #787878;
+}
