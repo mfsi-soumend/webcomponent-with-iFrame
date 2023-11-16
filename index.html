@@ -21,7 +21,7 @@
         .then((res) => res.json())
         .then((data) => {
           data.forEach((user) => {
-            const markup = `<iframe id="${user.id}" src="iframe.html"></iframe>`;
+            const markup = `<iframe id="${user.id}" src="iFrame.html"></iframe>`;
             document
               .querySelector(".iframe-wrapper")
               .insertAdjacentHTML("beforeend", markup);
